@@ -27,3 +27,14 @@ test.cb('read db', t => {
       t.end()
     })
 })
+
+test.cb('GET /search', t => {
+    request(app)
+      .get('/api/search')
+      .query({q: 'Joe'})
+      .expect(200)
+      .end((err, res) => {
+        t.is(res.body.length, 1)
+        t.is(res.body[0].text, 'Joe')
+      })
+})

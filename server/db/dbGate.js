@@ -3,7 +3,13 @@ const getData = (db) =>{
   .select('*')
 }
 
+const search = (searchTerm, db) => {
+  return getData(db)
+    .whereRaw('text = ? OR numbers = ?',[searchTerm, searchTerm])
+}
+
 
 module.exports ={
-  getData
+  getData,
+  search
 }
